@@ -214,7 +214,7 @@
 }
 
 .webtorrent-container input[type="file"]::before {
-  content: '📁 Choose Files';
+  content: 'Choose Files';
   position: absolute;
   left: 0;
   top: 0;
@@ -223,15 +223,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white !important;
+  background: var(--orange);
+  color: #ffffff !important;
   border-radius: 10px;
-  font-weight: 500;
-  transition: all 0.3s ease;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  transition: all 0.2s ease;
+  box-shadow: 0 6px 18px rgba(255, 90, 31, 0.18);
 }
 
 .webtorrent-container input[type="file"]:hover::before {
-  transform: scale(1.02);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(255, 90, 31, 0.22);
 }
 
 .webtorrent-container button {
@@ -783,3 +786,131 @@
     display: inline-block;
   }
 }
+
+/* --------------------------------------------------
+   Homepage palette + typography overrides (Inter + Orange)
+   This section intentionally overrides earlier styles to
+   visually align /webtorrent with the main index.html
+-------------------------------------------------- */
+
+:root {
+  --orange: #ff5a1f;
+  --text: #0f0f0f;
+}
+
+.webtorrent-container {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background: #ffffff !important;
+  color: var(--text) !important;
+}
+
+.webtorrent-container::before { display: none !important; }
+
+.container {
+  background: #ffffff !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+}
+
+.header {
+  background: #ffffff !important;
+  color: var(--text) !important;
+  text-align: left !important;
+  padding: 28px 24px !important;
+  border-bottom: 1px solid #eeeeee !important;
+}
+
+.header * { color: inherit !important; }
+
+.header h1 {
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  -webkit-text-fill-color: currentColor !important;
+  background-clip: initial !important;
+  color: var(--orange) !important;
+  font-weight: 900 !important;
+}
+
+.header p {
+  color: #6b6b6b !important;
+}
+
+.btn-back {
+  background: #ffffff !important;
+  color: #333 !important;
+  border: 1px solid #e5e5e5 !important;
+}
+
+.content {
+  background: #ffffff !important;
+}
+
+.section {
+  background: #ffffff !important;
+  border: 1px solid #eeeeee !important;
+  box-shadow: none !important;
+}
+
+.section::before { background: var(--orange) !important; }
+
+.webtorrent-container input[type="text"],
+.webtorrent-container input[type="file"],
+.magnet-link textarea {
+  border-color: #eaeaea !important;
+}
+
+.webtorrent-container input[type="text"]:focus,
+.magnet-link textarea:focus {
+  border-color: var(--orange) !important;
+  box-shadow: 0 0 0 3px rgba(255, 90, 31, 0.12) !important;
+}
+
+.webtorrent-container button {
+  background: var(--orange) !important;
+  color: #fff !important;
+  box-shadow: 0 6px 18px rgba(255, 90, 31, 0.18) !important;
+  font-weight: 700 !important;
+}
+
+.webtorrent-container button:hover {
+  box-shadow: 0 10px 24px rgba(255, 90, 31, 0.22) !important;
+}
+
+.btn-clear,
+.btn-stop {
+  background: #222 !important;
+}
+
+.btn-download,
+.btn-seed {
+  background: var(--orange) !important;
+}
+
+.torrent-list { border: 1px solid #eeeeee !important; box-shadow: none !important; }
+
+.torrent-item {
+  background: #ffffff !important;
+  border-left: 4px solid var(--orange) !important;
+  box-shadow: none !important;
+}
+
+.progress-bar { background: #efefef !important; }
+.progress-fill { background: var(--orange) !important; }
+
+.stat-card { border: 1px solid #eeeeee !important; box-shadow: none !important; }
+.stat-card::before { background: var(--orange) !important; }
+.stat-value { background: none !important; -webkit-text-fill-color: var(--orange) !important; color: var(--orange) !important; }
+.stat-label { color: #6b6b6b !important; }
+
+/* Make only the Connected Peers stat card black */
+.stat-card.connected {
+  background: #0f0f0f !important;
+  color: #ffffff !important;
+  border-color: #1e1e1e !important;
+}
+.stat-card.connected * { color: inherit !important; }
+.stat-card.connected .stat-value {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+.stat-card.connected .stat-label { color: #cccccc !important; }

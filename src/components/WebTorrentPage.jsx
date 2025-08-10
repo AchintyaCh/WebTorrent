@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './WebTorrentPage.css';
+import Footer from './Footer';
 
 // WebTorrent will be loaded from CDN for browser compatibility
 let WebTorrent = null;
@@ -314,7 +315,7 @@ const WebTorrentPage = () => {
       <div className="webtorrent-container">
         <div className="container">
           <div className="header">
-            <h1>🌊 WebTorrent P2P File Share</h1>
+            <h1>WebTorrent P2P File Share</h1>
             <p>Cross-firewall file sharing with WebTorrent</p>
             <button className="btn-back" onClick={() => navigate('/')}>
               ← Back to Home
@@ -340,7 +341,7 @@ const WebTorrentPage = () => {
       <div className="webtorrent-container">
         <div className="container">
           <div className="header">
-            <h1>🌊 WebTorrent P2P File Share</h1>
+            <h1>WebTorrent P2P File Share</h1>
             <p>Cross-firewall file sharing with WebTorrent</p>
             <button className="btn-back" onClick={() => navigate('/')}>
               ← Back to Home
@@ -364,7 +365,7 @@ const WebTorrentPage = () => {
     <div className="webtorrent-container">
       <div className="container">
         <div className="header">
-          <h1>🌊 WebTorrent P2P File Share</h1>
+            <h1>WebTorrent P2P File Share</h1>
           <p>Cross-firewall file sharing with WebTorrent</p>
           <button className="btn-back" onClick={() => navigate('/')}>
             ← Back to Home
@@ -373,9 +374,9 @@ const WebTorrentPage = () => {
         
         <div className="content">
           <div className="section">
-            <h3>📊 Network Stats</h3>
+            <h3>Network Stats</h3>
             <div className="stats">
-              <div className="stat-card">
+              <div className="stat-card connected">
                 <div className="stat-value">{stats.peerCount}</div>
                 <div className="stat-label">Connected Peers</div>
               </div>
@@ -422,7 +423,7 @@ const WebTorrentPage = () => {
           </div>
           
           <div className="section">
-            <h3>🔗 Join Torrent</h3>
+            <h3>Join Torrent</h3>
             <input 
               type="text" 
               placeholder="Paste magnet link or torrent file" 
@@ -445,7 +446,7 @@ const WebTorrentPage = () => {
           
           <div className="torrents-grid">
             <div className="torrent-list">
-              <h3>📥 Downloading Torrents</h3>
+              <h3>Downloading Torrents</h3>
               <div className="torrent-items">
                 {downloadingTorrents.map((torrent) => (
                   <TorrentItem 
@@ -464,7 +465,7 @@ const WebTorrentPage = () => {
             </div>
             
             <div className="torrent-list">
-              <h3>📤 Seeding Torrents</h3>
+              <h3>Seeding Torrents</h3>
               <div className="torrent-items">
                 {seedingTorrents.map((torrent) => (
                   <TorrentItem 
@@ -495,6 +496,7 @@ const WebTorrentPage = () => {
           {notification.message}
         </div>
       ))}
+      <Footer />
     </div>
   );
 };
