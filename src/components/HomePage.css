@@ -72,6 +72,7 @@
   object-fit: cover;
   display: block;
   background: #ececec;
+  border-radius: 16px;
 }
 
 .hero-video {
@@ -81,6 +82,7 @@
   display: block;
   background: #000;
   border: none;
+  border-radius: 16px;
 }
 
 @media (max-width: 768px) {
