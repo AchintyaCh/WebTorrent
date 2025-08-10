@@ -16,6 +16,8 @@
   padding: 36px 56px;
   background: transparent;
   color: inherit;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
 .brand {
@@ -31,6 +33,7 @@
   align-items: center;
   gap: 28px;
   font-size: 18px;
+  flex-wrap: wrap;
 }
 
 .nav a {
@@ -83,4 +86,18 @@
 @media (max-width: 768px) {
   .site-header { padding: 24px; }
   .hero { padding: 0 24px 40px 24px; }
+}
+
+/* Extra small devices */
+@media (max-width: 600px) {
+  .brand { font-size: 18px; }
+  .nav { gap: 16px; font-size: 16px; width: 100%; justify-content: flex-start; }
+  .btn-open { padding: 10px 14px; }
+}
+
+/* Make media elements responsive */
+.hero video,
+.hero img {
+  max-width: 100%;
+  height: auto;
 }

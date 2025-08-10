@@ -902,6 +902,14 @@
 .stat-value { background: none !important; -webkit-text-fill-color: var(--orange) !important; color: var(--orange) !important; }
 .stat-label { color: #6b6b6b !important; }
 
+/* Responsiveness tweaks */
+@media (max-width: 600px) {
+  .stats { grid-template-columns: 1fr; }
+  .webtorrent-container input[type="text"],
+  .webtorrent-container input[type="file"] { width: 100%; margin: 10px 0; }
+  .webtorrent-container button { width: 100%; margin-top: 8px; }
+}
+
 /* Make only the Connected Peers stat card black */
 .stat-card.connected {
   background: #0f0f0f !important;
