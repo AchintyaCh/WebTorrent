@@ -25,7 +25,7 @@ const AboutPage = () => {
           />
         </div>
         <div className="about-text">
-          <h1 className="about-title">About This Project</h1>
+          <h1 className="about-title">About this Project</h1>
           <p className="about-lead">
             WebTorrent P2P File Sharing Marketplace lets you share and fetch files directly from
             peers — no central server required. It runs entirely in your browser.
