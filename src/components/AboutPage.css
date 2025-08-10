@@ -1,0 +1,128 @@
+:root {
+  --orange: #ff5a1f;
+  --text: #0f0f0f;
+}
+
+.about-container {
+  min-height: 100vh;
+  background: #fff;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+}
+
+.about-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 36px 56px;
+  background: transparent;
+  color: inherit;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.brand {
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: 0.08em;
+  color: var(--orange);
+  text-transform: uppercase;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  font-size: 18px;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  color: #111;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.btn-open {
+  background: var(--orange);
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 700;
+  box-shadow: 0 6px 18px rgba(255, 90, 31, 0.3);
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 40px;
+  padding: 0 56px 64px 56px;
+  align-items: start;
+}
+
+.about-image-wrap {
+  width: 100%;
+  max-width: 520px;
+}
+
+.about-image {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  border-radius: 16px;
+  display: block;
+  background: #ececec;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.about-text {
+  max-width: 820px;
+}
+
+.about-title {
+  margin: 0 0 12px 0;
+  font-size: clamp(36px, 6.5vw, 64px);
+  line-height: 1.05;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: var(--orange);
+  text-transform: uppercase;
+}
+
+.about-lead {
+  font-size: 18px;
+  color: #222;
+  margin-bottom: 28px;
+}
+
+.about-subtitle {
+  font-size: 22px;
+  margin: 20px 0 12px 0;
+  color: #111;
+}
+
+.about-list {
+  margin: 0 0 12px 18px;
+  padding-left: 12px;
+}
+
+.about-list li {
+  margin: 8px 0;
+}
+
+@media (max-width: 992px) {
+  .about-content {
+    grid-template-columns: 1fr;
+  }
+  .about-image-wrap {
+    max-width: 380px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-header { padding: 24px; }
+  .about-content { padding: 0 24px 40px 24px; gap: 28px; }
+}
+
+

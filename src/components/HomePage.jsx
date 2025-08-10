@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './HomePage.css';
 import Footer from './Footer';
 
@@ -27,7 +27,7 @@ const HomePage = () => {
       <header className="site-header">
         <div className="brand">WebTorrent</div>
         <nav className="nav">
-          <a href="#about">About</a>
+          <Link to="/about#about">About</Link>
           <a href="#contact">Contact</a>
           <button className="btn-open" onClick={() => navigate('/webtorrent')}>Open</button>
         </nav>
