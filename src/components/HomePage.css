@@ -1,5 +1,5 @@
 :root {
-  --orange: #ff5a1f;
+  --orange: #f38d0e;
   --text: #0f0f0f;
 }
 
@@ -21,11 +21,12 @@
 }
 
 .brand {
-  font-weight: 900;
-  font-size: 22px;
-  letter-spacing: 0.08em;
-  color: var(--orange);
-  text-transform: uppercase;
+    font-weight: 900;
+    font-size: 22px;
+    letter-spacing: 0.08em;
+    color: var(--orange);
+    text-transform: uppercase;
+    text-shadow: 5px 5px 10px #00000047;
 }
 
 .nav {
@@ -51,55 +52,64 @@
   box-shadow: 0 6px 18px rgba(255, 90, 31, 0.3);
 }
 
+
+
 .hero {
-  padding: 0 56px 64px 56px;
+    display: flex;
+    align-items: center;
+    padding-block: 12vh;
+    padding-inline: 7vh;
+    gap: 6vh;
 }
 
 .headline {
-  margin: 0 0 28px 0;
-  max-width: 1000px;
-  font-size: clamp(42px, 8.2vw, 96px);
-  line-height: 0.95;
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  color: var(--orange);
-  text-transform: uppercase;
+    margin: 0 0 28px 0;
+    max-width: 1000px;
+    font-size: 70px;
+    text-shadow: 5px 5px 10px #00000047;
+    z-index: 1;
+    line-height: 0.95;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    color: var(--orange);
+    text-transform: uppercase;
 }
-
-.hero-image {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  display: block;
-  background: #ececec;
-  border-radius: 16px;
-}
-
-.hero-video {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
+/* Make media elements responsive */
+.hero video, .hero img {
+    max-width: 48%;
+    height: auto;
+    box-shadow: 9px 10px 10px #0000005c;
+    object-fit: cover;
   display: block;
   background: #000;
   border: none;
   border-radius: 16px;
 }
+.nav-tabs {
+    gap: 30px;
+    display: flex
+;
+}
+
+
 
 @media (max-width: 768px) {
   .site-header { padding: 24px; }
-  .hero { padding: 0 24px 40px 24px; }
+      .hero {
+        padding: 40px 24px 40px 24px;
+        flex-direction: column-reverse;
+    }
+        .hero video, .hero img {
+        max-width: 80%;
+        height: auto;
+        border-radius: 60px;
+        box-shadow: 9px 10px 10px #0000005c;
+    }
+    .headline{
+      text-align: center;
+    }
+    .nav-tabs{
+      visibility: hidden;
+    }
 }
 
-/* Extra small devices */
-@media (max-width: 600px) {
-  .brand { font-size: 18px; }
-  .nav { gap: 16px; font-size: 16px; width: 100%; justify-content: flex-start; }
-  .btn-open { padding: 10px 14px; }
-}
-
-/* Make media elements responsive */
-.hero video,
-.hero img {
-  max-width: 100%;
-  height: auto;
-}
