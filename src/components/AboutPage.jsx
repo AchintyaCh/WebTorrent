@@ -1,19 +1,80 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './AboutPage.css';
 import Footer from './Footer';
 
 const AboutPage = () => {
   const navigate = useNavigate();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    // Close mobile menu when clicking outside
+    const handleClickOutside = (event) => {
+      if (!isMounted) return;
+      
+      try {
+        if (isMobileMenuOpen && !event.target.closest('.nav') && !event.target.closest('.mobile-menu-toggle')) {
+          setIsMobileMenuOpen(false);
+        }
+      } catch (error) {
+        console.warn('Click outside error:', error);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    
+    return () => {
+      isMounted = false;
+      try {
+        document.removeEventListener('click', handleClickOutside);
+      } catch (error) {
+        console.warn('Error removing click listener:', error);
+      }
+    };
+  }, [isMobileMenuOpen]);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const handleNavClick = () => {
+    setIsMobileMenuOpen(false);
+  };
+
+  const handleImageClick = () => {
+    // Add any image interaction logic here
+    console.log('About image clicked');
+  };
+
   return (
     <div className="about-container">
       <header className="about-header">
-        <div className="brand">WebTorrent</div>
-        <nav className="nav">
-          <Link to="/">Home</Link>
-          <Link to="/about#about">About</Link>
-          <button className="btn-open" onClick={() => navigate('/webtorrent')}>Open</button>
+        <div className="brand" onClick={() => navigate('/')}>
+          WebTorrent
+        </div>
+        
+        <nav className={`nav ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
+          <Link to="/" onClick={handleNavClick}>Home</Link>
+          <Link to="/about#about" onClick={handleNavClick}>About</Link>
+          <button className="btn-open" onClick={() => {
+            handleNavClick();
+            navigate('/webtorrent');
+          }}>
+            Open
+          </button>
         </nav>
+
+        <div 
+          className={`mobile-menu-toggle ${isMobileMenuOpen ? 'active' : ''}`}
+          onClick={toggleMobileMenu}
+          aria-label="Toggle mobile menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </header>
 
       <main id="about" className="about-content">
@@ -22,8 +83,10 @@ const AboutPage = () => {
             src="/square.png"
             alt="Peer-to-peer connections illustration"
             className="about-image"
+            onClick={handleImageClick}
           />
         </div>
+        
         <div className="about-text">
           <h1 className="about-title">About This Project</h1>
           <p className="about-lead">

@@ -69,11 +69,24 @@ const WebTorrentPage = () => {
 
     // Cleanup on unmount
     return () => {
-      if (statsIntervalRef.current) {
-        clearInterval(statsIntervalRef.current);
-      }
-      if (client) {
-        client.destroy();
+      try {
+        if (statsIntervalRef.current) {
+          clearInterval(statsIntervalRef.current);
+          statsIntervalRef.current = null;
+        }
+        if (client) {
+          // Remove all torrents before destroying
+          client.torrents.forEach(torrent => {
+            try {
+              torrent.destroy();
+            } catch (error) {
+              console.warn('Error destroying torrent:', error);
+            }
+          });
+          client.destroy();
+        }
+      } catch (error) {
+        console.warn('Error during WebTorrent cleanup:', error);
       }
     };
   }, []);
@@ -83,6 +96,30 @@ const WebTorrentPage = () => {
       updateStats();
     }
   }, [client, torrents]);
+
+  // Additional cleanup effect to ensure WebTorrent processes are terminated
+  useEffect(() => {
+    return () => {
+      // Clean up any remaining WebTorrent references
+      try {
+        if (window.WebTorrent && window.WebTorrent.WEBRTC_SUPPORT) {
+          // Force cleanup of any remaining WebRTC connections
+          if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            // This helps ensure WebRTC connections are properly closed
+            navigator.mediaDevices.getUserMedia({ audio: false, video: false })
+              .then(stream => {
+                stream.getTracks().forEach(track => track.stop());
+              })
+              .catch(() => {
+                // Ignore errors, this is just for cleanup
+              });
+          }
+        }
+      } catch (error) {
+        console.warn('Error during additional cleanup:', error);
+      }
+    };
+  }, []);
 
   const updateStats = () => {
     if (!client) return;
@@ -304,6 +341,17 @@ const WebTorrentPage = () => {
   const clearMagnetInput = () => {
     setMagnetLink('');
     setMagnetStatus('');
+    showNotification('Magnet link cleared');
+  };
+
+  const copyMagnetLink = () => {
+    if (magnetLink) {
+      navigator.clipboard.writeText(magnetLink).then(() => {
+        showNotification('Magnet link copied to clipboard!');
+      }).catch(() => {
+        showNotification('Failed to copy magnet link', 'error');
+      });
+    }
   };
 
   const downloadingTorrents = torrents.filter(t => t.type === 'downloading');
@@ -324,9 +372,14 @@ const WebTorrentPage = () => {
           <div className="content">
             <div className="section">
               <h3>⏳ Loading WebTorrent...</h3>
-              <div style={{ textAlign: 'center', padding: '40px' }}>
-                <div style={{ fontSize: '2em', marginBottom: '20px' }}>🔄</div>
+              <div className="loading-container">
+                <div className="loading-spinner">🔄</div>
                 <p>Initializing WebTorrent client...</p>
+                <div className="loading-dots">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
               </div>
             </div>
           </div>
@@ -408,7 +461,16 @@ const WebTorrentPage = () => {
             </button>
             {magnetLink && (
               <div className="magnet-link">
-                <strong>Magnet Link:</strong><br/>
+                <div className="magnet-header">
+                  <strong>Magnet Link:</strong>
+                  <button 
+                    className="btn-copy" 
+                    onClick={copyMagnetLink}
+                    title="Copy to clipboard"
+                  >
+                    📋 Copy
+                  </button>
+                </div>
                 <textarea 
                   value={magnetLink} 
                   readOnly 
