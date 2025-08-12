@@ -1,8 +1,10 @@
 .app-footer {
-  margin-top: 40px;
-  padding: 32px 24px 24px 24px;
-  background: #0f0f0f;
-  color: #ffffff;
+    margin-top: 40px;
+    position: relative;
+    bottom: 0px;
+    padding: 65px 24px 42px 26px;
+    background: #282828;
+    color: #ffffff;
 }
 
 .footer-inner {
@@ -18,7 +20,7 @@
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #ff5a1f;
+  color: #f38d0e;
 }
 
 .footer-nav {
