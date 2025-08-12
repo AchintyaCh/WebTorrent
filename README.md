@@ -61,7 +61,7 @@ The built files will be in the `dist` directory.
 - Navigate to the home page to see available sharing modes
 - Click on "WebTorrent Mode" to start file sharing
 
-### WebTorrent Page
+### WebTorrent Page:
 
 #### Sharing Files
 1. Click "Choose Files" to select files from your computer
