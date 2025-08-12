@@ -9,7 +9,7 @@ A modern React application for peer-to-peer file sharing using WebTorrent techno
 - 🔗 **Magnet Links**: Join existing torrents using magnet links
 - 📊 **Real-time Stats**: Monitor download/upload speeds and peer connections
 - 📱 **Responsive Design**: Works on desktop and mobile devices
-- ⚡ **Modern UI**: Beautiful gradient design with smooth animations
+- ⚡ **Modern UI**: Beautiful gradient design with smooth animations.
 
 ## Technology Stack
 
