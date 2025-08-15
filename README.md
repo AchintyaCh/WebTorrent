@@ -2,7 +2,7 @@
 
 A modern React application for peer-to-peer file sharing using WebTorrent technology. This application allows users to share files across firewalls and NATs using the standard torrent protocol.
 
-## Features
+## Features-
 
 - 🌊 **WebTorrent Mode**: Cross-firewall P2P file sharing
 - 📁 **File Sharing**: Create and share torrents from local files
