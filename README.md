@@ -11,7 +11,7 @@ A modern React application for peer-to-peer file sharing using WebTorrent techno
 - 📱 **Responsive Design**: Works on desktop and mobile devices
 - ⚡ **Modern UI**: Beautiful gradient design with smooth animations.
 
-## Technology Stack
+## Technology Stack-
 
 - **React 18** - Modern React with hooks
 - **Vite** - Fast build tool and development server
