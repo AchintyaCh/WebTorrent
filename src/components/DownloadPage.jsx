@@ -31,21 +31,24 @@ const DownloadPage = () => {
     const downloads = {
       windows: {
         name: 'WebTorrent for Windows',
-        file: 'WebTorrent-Setup.exe',
+        downloadUrl: 'https://drive.usercontent.google.com/download?id=1Dw1AXCINimKfB_L3YhphZ3Aju8CKH72F&export=download&authuser=0&confirm=t&uuid=dbf9756c-fc45-4fc6-9aee-09397652898c&at=AN8xHopa_k8pfMO5_rR5z1ZaeEhz:1757729858581',
+        viewUrl: 'https://drive.google.com/file/d/1Dw1AXCINimKfB_L3YhphZ3Aju8CKH72F/view?usp=drive_link',
         icon: '🪟',
         size: '~45 MB',
         description: 'Windows 10/11 compatible installer'
       },
       macos: {
         name: 'WebTorrent for macOS',
-        file: 'WebTorrent.dmg',
+        downloadUrl: 'https://drive.google.com/file/d/12dYJ4sGnt2J30F-wnZdg3pQPKUrkllgc/view?usp=sharinghttps://drive.usercontent.google.com/download?id=12dYJ4sGnt2J30F-wnZdg3pQPKUrkllgc&export=download&authuser=0&confirm=t&uuid=f641c7d0-e043-4f95-9f54-2b12ba0c9fe1&at=AN8xHoqi_PE9bOKW5YQ-5jRCiI6k:1757729785332',
+        viewUrl: 'https://drive.usercontent.google.com/download?id=12dYJ4sGnt2J30F-wnZdg3pQPKUrkllgc&export=download&authuser=0&confirm=t&uuid=f641c7d0-e043-4f95-9f54-2b12ba0c9fe1&at=AN8xHoqi_PE9bOKW5YQ-5jRCiI6k:1757729785332',
         icon: '🍎',
         size: '~52 MB',
         description: 'macOS 10.15+ compatible disk image'
       },
       linux: {
         name: 'WebTorrent for Ubuntu/Debian',
-        file: 'webtorrent.deb',
+        downloadUrl: 'https://drive.google.com/uc?export=download&id=1Dw1AXCINimKfB_L3YhphZ3Aju8CKH72F',
+        viewUrl: 'https://drive.google.com/file/d/1Dw1AXCINimKfB_L3YhphZ3Aju8CKH72F/view?usp=drive_link',
         icon: '🐧',
         size: '~38 MB',
         description: 'Ubuntu 18.04+ / Debian 10+ package'
@@ -55,18 +58,14 @@ const DownloadPage = () => {
   };
 
   // Start download function
-  const startDownload = (filename) => {
+  const startDownload = (downloadUrl, fileName = 'WebTorrent') => {
     try {
+      // Open Google Drive download link in new tab
       const link = document.createElement('a');
-      link.href = `/downloads/${filename}`;
-      link.download = filename;
+      link.href = downloadUrl;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
       link.style.display = 'none';
-      
-      // Add error handling for the download
-      link.onerror = () => {
-        setDownloadError(`File ${filename} not found. Please contact support.`);
-        setDownloadStarted(false);
-      };
       
       document.body.appendChild(link);
       link.click();
@@ -102,7 +101,7 @@ const DownloadPage = () => {
     const timer = setTimeout(() => {
       const downloadInfo = getDownloadInfo(os);
       if (downloadInfo) {
-        startDownload(downloadInfo.file);
+        startDownload(downloadInfo.downloadUrl, downloadInfo.name);
       } else {
         setDownloadError('Your operating system is not supported yet.');
       }
@@ -195,7 +194,7 @@ const DownloadPage = () => {
             <p>Choose your operating system to download manually:</p>
             
             <div className="download-grid">
-              {allDownloads.map(({ os, name, file, icon, size, description }) => (
+              {allDownloads.map(({ os, name, downloadUrl, viewUrl, icon, size, description }) => (
                 <div key={os} className={`download-card ${detectedOS === os ? 'recommended' : ''}`}>
                   <div className="card-header">
                     <span className="card-icon">{icon}</span>
@@ -213,14 +212,27 @@ const DownloadPage = () => {
                       <span className="detail-label">Requirements:</span>
                       <span className="detail-value">{description}</span>
                     </div>
+                    <div className="detail-item">
+                      <span className="detail-label">Source:</span>
+                      <span className="detail-value">Google Drive</span>
+                    </div>
                   </div>
-                  <button 
-                    className="btn-download"
-                    onClick={() => startDownload(file)}
-                  >
-                    <span>⬇️</span>
-                    Download
-                  </button>
+                  <div className="download-buttons">
+                    <button 
+                      className="btn-download"
+                      onClick={() => startDownload(downloadUrl, name)}
+                    >
+                      <span>⬇️</span>
+                      Download
+                    </button>
+                    <button 
+                      className="btn-view"
+                      onClick={() => window.open(viewUrl, '_blank', 'noopener,noreferrer')}
+                    >
+                      <span>👁️</span>
+                      View
+                    </button>
+                  </div>
                 </div>
               ))}
             </div>
@@ -228,19 +240,23 @@ const DownloadPage = () => {
 
           {/* Additional Information */}
           <div className="download-info">
-            <h3>Installation Instructions</h3>
+            <h3>Download &amp; Installation</h3>
             <div className="info-grid">
               <div className="info-item">
-                <h4>🪟 Windows</h4>
-                <p>Run the .exe installer and follow the setup wizard. Windows Defender may show a warning for unsigned apps.</p>
+                <h4>📥 Download Process</h4>
+                <p>Files are hosted on Google Drive for fast, reliable downloads. Click "Download" to get the installer directly, or "View" to see the file details first.</p>
               </div>
               <div className="info-item">
-                <h4>🍎 macOS</h4>
-                <p>Open the .dmg file and drag WebTorrent to your Applications folder. You may need to allow the app in System Preferences &gt; Security.</p>
+                <h4>🪟 Windows Installation</h4>
+                <p>Run the .exe installer and follow the setup wizard. Windows Defender may show a warning for unsigned apps - click "More info" then "Run anyway".</p>
               </div>
               <div className="info-item">
-                <h4>🐧 Linux</h4>
-                <p>Install using: <code>sudo dpkg -i webtorrent.deb</code> or double-click the .deb file in your file manager.</p>
+                <h4>🍎 macOS Installation</h4>
+                <p>Open the .dmg file and drag WebTorrent to your Applications folder. You may need to allow the app in System Preferences &gt; Security &amp; Privacy.</p>
+              </div>
+              <div className="info-item">
+                <h4>🐧 Linux Installation</h4>
+                <p>Install using: <code>sudo dpkg -i webtorrent.deb</code> or double-click the .deb file in your file manager to install via Software Center.</p>
               </div>
             </div>
           </div>
