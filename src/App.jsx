@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ThemeProvider } from './contexts/ThemeContext';
 import HomePage from './components/HomePage';
 import WebTorrentPage from './components/WebTorrentPage';
 import AboutPage from './components/AboutPage';
+import DownloadPage from './components/DownloadPage';
 import './App.css';
 
 // Scroll to top component
@@ -69,16 +71,19 @@ const ScrollToTop = () => {
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/webtorrent" element={<WebTorrentPage />} />
-          <Route path="/about" element={<AboutPage />} />
-        </Routes>
-        <ScrollToTop />
-      </div>
-    </Router>
+    <ThemeProvider>
+      <Router>
+        <div className="App">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/webtorrent" element={<WebTorrentPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/download" element={<DownloadPage />} />
+          </Routes>
+          <ScrollToTop />
+        </div>
+      </Router>
+    </ThemeProvider>
   );
 }
 

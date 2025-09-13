@@ -1,0 +1,5 @@
+# This file keeps the downloads directory in git
+# Add your application files here:
+# - WebTorrent-Setup.exe (Windows)
+# - WebTorrent.dmg (macOS)  
+# - webtorrent.deb (Linux/Ubuntu)

@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useTheme } from '../contexts/ThemeContext';
 import './HomePage.css';
 import Footer from './Footer';
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const { isDarkMode, toggleTheme } = useTheme();
   const videoRef = useRef(null);
   const headerRef = useRef(null);
   const [showPoster, setShowPoster] = useState(false);
@@ -107,7 +109,15 @@ const HomePage = () => {
         
         <nav className={`nav ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
           <Link to="/about#about" onClick={handleNavClick}>About</Link>
+          <Link to="/download" onClick={handleNavClick}>Download</Link>
           <a href="#contact" onClick={handleNavClick}>Contact</a>
+          <button 
+            className="theme-toggle-btn"
+            onClick={toggleTheme}
+            aria-label="Toggle dark mode"
+          >
+            {isDarkMode ? '☀️' : '🌙'}
+          </button>
           <button className="btn-open" onClick={() => {
             handleNavClick();
             navigate('/webtorrent');
