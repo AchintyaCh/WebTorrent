@@ -42,8 +42,8 @@
 
 /* Header icons (largest size) */
 .theme-toggle-container.header .theme-toggle-btn svg {
-  width: 30px;
-  height: 30px;
+  position: absolute;
+  width: 30%;
 }
 
 /* Compact icons (slightly smaller but still bigger than before) */
