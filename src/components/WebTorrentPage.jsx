@@ -815,12 +815,12 @@ const WebTorrentPage = () => {
                     <AreaChart data={speedHistory}>
                       <defs>
                         <linearGradient id="downloadGradient" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.8} />
-                          <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.1} />
+                          <stop offset="5%" stopColor="#f38d0e" stopOpacity={0.8} />
+                          <stop offset="95%" stopColor="#f38d0e" stopOpacity={0.1} />
                         </linearGradient>
                         <linearGradient id="uploadGradient" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor="#10b981" stopOpacity={0.8} />
-                          <stop offset="95%" stopColor="#10b981" stopOpacity={0.1} />
+                          <stop offset="5%" stopColor={theme === 'dark' ? '#ffffff' : '#000000'} stopOpacity={0.8} />
+                          <stop offset="95%" stopColor={theme === 'dark' ? '#ffffff' : '#000000'} stopOpacity={0.1} />
                         </linearGradient>
                       </defs>
                       <XAxis dataKey="timestamp" hide />
@@ -829,14 +829,14 @@ const WebTorrentPage = () => {
                         type="monotone"
                         dataKey="downloadSpeed"
                         stackId="1"
-                        stroke="#3b82f6"
+                        stroke="#f38d0e"
                         fill="url(#downloadGradient)"
                       />
                       <Area
                         type="monotone"
                         dataKey="uploadSpeed"
                         stackId="2"
-                        stroke="#10b981"
+                        stroke={theme === 'dark' ? '#ffffff' : '#000000'}
                         fill="url(#uploadGradient)"
                       />
                     </AreaChart>
@@ -847,7 +847,7 @@ const WebTorrentPage = () => {
                       <span>Download</span>
                     </div>
                     <div className="legend-item">
-                      <div className="legend-dot" style={{ backgroundColor: '#ffffff' }}></div>
+                      <div className="legend-dot" style={{ backgroundColor: theme === 'dark' ? '#ffffff' : '#000000' }}></div>
                       <span>Upload</span>
                     </div>
                   </div>
