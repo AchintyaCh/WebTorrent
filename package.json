@@ -1,0 +1,55 @@
+{
+  "name": "p2p-blockchain-electron",
+  "version": "1.0.0",
+  "description": "Decentralized P2P File Sharing with Blockchain - No Trackers",
+  "author": "P2P Blockchain Developer",
+  "main": "src/main.js",
+  "type": "commonjs",
+  "homepage": "./",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "verify-contract": "node verify-contract.js",
+    "test": "node test-app.js",
+    "test-metamask": "node test-metamask-connection.js",
+    "install-full": "node install-full.js",
+    "build": "electron-builder",
+    "build-exe": "node build-exe.js",
+    "fix-and-build": "node fix-and-build.js",
+    "build-simple": "node build-simple.js",
+    "build-final": "node build-final.js",
+    "create-portable": "node create-portable.js",
+    "update-contract": "node update-contract.js",
+    "build-win": "electron-builder --win",
+    "build-mac": "electron-builder --mac",
+    "build-linux": "electron-builder --linux",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "dependencies": {
+    "ethers": "^5.7.2",
+    "fs-extra": "^11.0.0",
+    "webtorrent": "^1.9.7"
+  },
+  "devDependencies": {
+    "electron": "^22.0.0",
+    "electron-builder": "^24.0.0"
+  },
+  "build": {
+    "appId": "com.p2p.blockchain.filesharing",
+    "productName": "P2P Blockchain File Sharing",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "src/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": "portable"
+    },
+    "nsis": {
+      "oneClick": false
+    }
+  }
+}

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P2P Blockchain File Sharing</title>
+    <link rel="stylesheet" href="./HomePage.css">
+    <link rel="stylesheet" href="./ThemeToggle.css">
+</head>
+
+<body>
+    <div class="home-container">
+        <header class="site-header">
+            <div class="brand" onclick="window.location.reload()">WebTorrent</div>
+
+            <nav class="nav">
+                <a href="#about" onclick="showAbout()">About</a>
+                <a href="#contact" onclick="handleNavClick()">Contact</a>
+                <div class="theme-toggle-container header">
+                    <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle theme"
+                        aria-label="Toggle theme">
+                        <svg class="theme-icon moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                        <svg class="theme-icon sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" style="display: none;">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <path
+                                d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+                <button class="btn-open" onclick="openBlockchainMarketplace()">
+                    Open
+                </button>
+            </nav>
+
+            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </header>
+
+        <main class="hero">
+            <div class="hero-content">
+                <h1 class="headline">
+                    P2P File Sharing <span>Marketplace</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Share and download files directly from peers — no central server required.
+                    Built with WebTorrent for secure, decentralized file sharing.
+                </p>
+                <div class="hero-actions">
+                    <button class="btn-primary" onclick="openBlockchainMarketplace()">
+                        Start Sharing
+                    </button>
+                    <button class="btn-secondary" onclick="showAbout()">
+                        Learn More
+                    </button>
+                </div>
+            </div>
+
+            <div class="hero-media">
+                <video class="hero-video" src="../../public/hero.mp4" autoplay muted playsinline preload="auto"
+                    poster="../../public/p2p.jpg" onclick="handleVideoClick()" onended="showPosterImage()"
+                    onerror="showPosterImage()">
+                </video>
+            </div>
+        </main>
+
+        <!-- About Section (hidden by default) -->
+        <section id="about-section" class="about-section" style="display: none;">
+            <div class="about-content">
+                <button class="back-btn" onclick="hideAbout()">← Back to Home</button>
+
+                <div class="about-text">
+                    <h1 class="about-title">About This Project</h1>
+                    <p class="about-lead">
+                        WebTorrent P2P File Sharing Marketplace lets you share and fetch files directly from
+                        peers — no central server required. It runs entirely in your browser.
+                    </p>
+
+                    <h2 class="about-subtitle">Current Status</h2>
+                    <p>
+                        <strong>Phase I:</strong> This project is currently in <strong>Phase I</strong>.
+                    </p>
+
+                    <h2 class="about-subtitle">How It Works – In Detail</h2>
+                    <ol class="about-list">
+                        <li><strong>File Selection:</strong> Users choose a file in the app, which gets split into
+                            multiple smaller chunks.</li>
+                        <li><strong>Torrent Creation:</strong> The app creates a torrent file containing metadata about
+                            these chunks and a unique <em>magnet link</em> that identifies the file.</li>
+                        <li><strong>Peer Discovery:</strong> Peers find each other using WebRTC trackers, enabling
+                            direct browser-to-browser connections without a central server.</li>
+                        <li><strong>Chunk Exchange:</strong> Once connected, peers exchange file chunks in parallel —
+                            this speeds up the download and makes it resilient if some peers disconnect.</li>
+                        <li><strong>Seeding:</strong> After a user downloads all chunks, they can continue sharing them
+                            with others, keeping the file alive in the network.</li>
+                        <li><strong>Privacy and Security:</strong> All data is transferred over encrypted channels,
+                            protecting files from eavesdropping and tampering.</li>
+                    </ol>
+
+                    <h2 class="about-subtitle">Future Plans</h2>
+                    <ul class="about-list">
+                        <li>
+                            <strong>Phase II:</strong> Connecting Blockchain to store magnet links of files and storing
+                            file chunks in a Merkle tree, hashed using SHA-256. Blockchain will hide user IP addresses
+                            to ensure privacy and security, eliminating the need for traditional trackers. Currently,
+                            this project uses a tracker, mimicking BitTorrent's model.
+                        </li>
+                        <li>
+                            <strong>Phase III:</strong> Creating a reward system to incentivize users who seed files,
+                            providing tangible benefits to active contributors.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <div class="footer-inner">
+                <div class="footer-brand" onclick="window.location.reload()">WebTorrent</div>
+                <nav class="footer-nav">
+                    <a href="#about" onclick="showAbout()">About</a>
+                    <a href="#contact" onclick="handleNavClick()">Contact</a>
+                    <a href="#privacy" onclick="handleNavClick()">Privacy</a>
+                </nav>
+            </div>
+            <div class="footer-bottom">
+                © <span id="current-year">2024</span> WebTorrent — P2P File Sharing Marketplace
+            </div>
+        </footer>
+    </div>
+
+    <script src="homepage.js"></script>
+</body>
+
+</html>
