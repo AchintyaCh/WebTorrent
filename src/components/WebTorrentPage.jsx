@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Analytics } from '@vercel/analytics/react';
+
 
 import {
   Download, Upload, Users, HardDrive, Activity,
@@ -1346,7 +1346,7 @@ const TorrentCard = ({ torrent, onRemove, onDownload, formatBytes, formatSpeed, 
               </>
             )}
           </div>
-           <Analytics />
+          
           <div className="activity-indicator">
             <div className={`activity-dot ${speed > 0 ? 'active' : 'inactive'}`}></div>
             <span className="activity-text">
