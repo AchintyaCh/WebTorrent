@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Analytics } from "@vercel/analytics/next"
 import {
   Download, Upload, Users, HardDrive, Activity,
   Play, Pause, Square, Copy, Plus, Link,
