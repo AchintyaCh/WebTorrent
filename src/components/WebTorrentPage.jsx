@@ -306,7 +306,25 @@ const WebTorrentPage = () => {
         // Check if WebTorrent is available globally
         if (typeof window !== 'undefined' && window.WebTorrent) {
           WebTorrent = window.WebTorrent;
-          const newClient = new WebTorrent();
+          const newClient = new WebTorrent({
+                    tracker: {
+                      announce: [  
+                        'wss://tracker.webtorrent.io',
+                        'wss://tracker.btorrent.xyz',
+                        'wss://tracker.openwebtorrent.com',
+                        'wss://tracker.fastcast.nz',
+                  
+                       
+                        'udp://tracker.openbittorrent.com:80',
+                        'udp://tracker.opentrackr.org:1337/announce',
+                        'udp://tracker.leechers-paradise.org:6969/announce',
+                        'udp://exodus.desync.com:6969/announce',
+                        'udp://tracker.tiny-vps.com:6969/announce'
+                      ]
+                    },
+                    dht: true,              
+                    lsd: false            
+                  });
 
           newClient.on('error', (err) => {
             console.error('WebTorrent error:', err);
