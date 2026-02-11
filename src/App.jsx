@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './contexts/ThemeContext';
 import HomePage from './components/HomePage';
 import WebTorrentPage from './components/WebTorrentPage';
-import { Analytics } from '@vercel/analytics/react';
+
 import AboutPage from './components/AboutPage';
 import './App.css';
 
@@ -80,7 +80,7 @@ function App() {
             <Route path="/about" element={<AboutPage />} />
           </Routes>
           <ScrollToTop />
-           <Analytics />
+          
         </div>
       </Router>
     </ThemeProvider>
