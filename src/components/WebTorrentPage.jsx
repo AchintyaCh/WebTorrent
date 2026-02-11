@@ -268,10 +268,10 @@ const NetworkVisualization = ({ peerCount }) => {
         />
       </svg>
       <div className="network-count">{peerCount} peers</div>
+ <Analytics />
     </div>
   );
 };
-
 const WebTorrentPage = () => {
   const navigate = useNavigate();
   const [client, setClient] = useState(null);
@@ -307,6 +307,7 @@ const WebTorrentPage = () => {
         // Check if WebTorrent is available globally
         if (typeof window !== 'undefined' && window.WebTorrent) {
           WebTorrent = window.WebTorrent;
+          
           const newClient = new WebTorrent({
                     tracker: {
                       announce: [  
