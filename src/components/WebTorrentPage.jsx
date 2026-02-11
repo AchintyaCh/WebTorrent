@@ -268,7 +268,7 @@ const NetworkVisualization = ({ peerCount }) => {
         />
       </svg>
       <div className="network-count">{peerCount} peers</div>
- <Analytics />
+
     </div>
   );
 };
@@ -1345,6 +1345,7 @@ const TorrentCard = ({ torrent, onRemove, onDownload, formatBytes, formatSpeed, 
               </>
             )}
           </div>
+           <Analytics />
           <div className="activity-indicator">
             <div className={`activity-dot ${speed > 0 ? 'active' : 'inactive'}`}></div>
             <span className="activity-text">
