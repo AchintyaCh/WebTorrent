@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { SpeedInsights } from '@vercel/speed-insights/react';
+import { Analytics } from '@vercel/analytics/react';
 import { ThemeProvider } from './contexts/ThemeContext';
 import HomePage from './components/HomePage';
 import WebTorrentPage from './components/WebTorrentPage';
@@ -82,6 +83,7 @@ function App() {
           </Routes>
           <ScrollToTop />
           <SpeedInsights />
+          <Analytics />
         </div>
       </Router>
     </ThemeProvider>
